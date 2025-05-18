@@ -28,7 +28,7 @@ El flujo de peticiones sigue el diagrama proporcionado en el desafío: [Diagrama
 
 ## Estructura del Proyecto
 
-fullstack-challenge/├── api/              # Código del Backend API│   ├── src/          # Código fuente de la API│   │   ├── controllers/│   │   ├── routes/│   │   └── services/│   ├── test/         # Tests para la API│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para la API│   └── package.json├── frontend/         # Código del Frontend React│   ├── public/│   ├── src/          # Código fuente del Frontend│   │   ├── components/│   │   └── services/│   ├── .dockerignore # Archivo para ignorar archivos en el contexto Docker del frontend│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para el Frontend│   └── package.json├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios└── README.md          # Este archivo
+toolbox-tech-challenge/├── api/              # Código del Backend API│   ├── src/          # Código fuente de la API│   │   ├── controllers/│   │   ├── routes/│   │   └── services/│   ├── test/         # Tests para la API│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para la API│   └── package.json├── frontend/         # Código del Frontend React│   ├── public/│   ├── src/          # Código fuente del Frontend│   │   ├── components/│   │   └── services/│   ├── .dockerignore # Archivo para ignorar archivos en el contexto Docker del frontend│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para el Frontend│   └── package.json├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios└── README.md          # Este archivo
 ## Requisitos Previos
 
 * Node.js:
@@ -43,7 +43,7 @@ fullstack-challenge/├── api/              # Código del Backend API│   �
 1.  **Clonar el repositorio (si aplica):**
     ```bash
     git clone <url-del-repositorio-git>
-    cd fullstack-challenge
+    cd toolbox-tech-challenge
     ```
 2.  **No es necesario `npm install` manual en los subdirectorios `api` o `frontend` si se va a usar Docker exclusivamente**, ya que los Dockerfiles se encargan de esto. Si deseas trabajar localmente en alguno de los proyectos sin Docker, entonces sí necesitarías ejecutar `npm install` en el directorio correspondiente (`api/` o `frontend/`).
 
@@ -54,7 +54,7 @@ La forma recomendada de ejecutar ambas aplicaciones es usando Docker Compose.
 ### Usando Docker Compose (Recomendado)
 
 1.  Asegúrate de que Docker Desktop esté en ejecución.
-2.  Desde el directorio raíz del proyecto (`fullstack-challenge/`), ejecuta:
+2.  Desde el directorio raíz del proyecto (`toolbox-tech-challenge/`), ejecuta:
     ```bash
     docker compose up --build
     ```
@@ -117,12 +117,11 @@ La forma recomendada de ejecutar ambas aplicaciones es usando Docker Compose.
 
 * **`GET /files/data`**: Retorna la lista de archivos procesados con sus líneas válidas en formato JSON.
     * Ejemplo: `curl -X GET http://localhost:3001/files/data -H "accept: application/json"`
-    * **Punto Opcional Implementado**: Permite filtrar por nombre de archivo: `GET /files/data?fileName=<nombre_del_archivo.csv>`
+    * Permite filtrar por nombre de archivo: `GET /files/data?fileName=<nombre_del_archivo.csv>`
         * Ejemplo: `curl -X GET "http://localhost:3001/files/data?fileName=file1.csv"`
 
 * **`GET /files/list` (Punto Opcional)**: Retorna la lista de nombres de archivos disponibles desde la API externa.
     * Ejemplo: `curl -X GET http://localhost:3001/files/list -H "accept: application/json"`
-    * *Nota: Este endpoint se añadió como parte de los puntos opcionales. Su implementación se encuentra en `api/src/routes/files.routes.js` y utiliza el servicio `externalApi.service.js`.*
 
 ## Consideraciones y Decisiones de Diseño
 
@@ -139,14 +138,9 @@ La forma recomendada de ejecutar ambas aplicaciones es usando Docker Compose.
 ## Puntos Opcionales Implementados
 
 * **API:**
-    * ✅ Endpoint `GET /files/list`: Implementado.
-    * ✅ Filtro por queryparam en `GET /files/data?fileName=<Nombre del archivo>`: Implementado.
-    * ❌ Usar StandardJS: No implementado activamente (se podría añadir `npm install --save-dev standard` y un script `lint` en `api/package.json`).
+    * ✅ Endpoint `GET /files/list`
+    * ✅ Filtro por queryparam en `GET /files/data?fileName=<Nombre del archivo>`
 * **FRONTEND:**
-    * ❌ Usar Redux: No implementado. Se utiliza el estado local de React (`useState`, `useContext` si fuera necesario para una app más compleja).
-    * ❌ Test unitarios usando Jest: No implementados (Create React App configura Jest, se podrían añadir archivos `*.test.js` en `frontend/src/components/` o `frontend/src/`).
     * ✅ Poder filtrar por "fileName" usando el punto opcional del API: El frontend tiene un dropdown (si se habilita la carga de `availableFiles`) que utiliza el endpoint `/files/data?fileName=` de la API.
 * **GLOBAL:**
     * ✅ Usar Docker o Docker Compose para correr las apps: Implementado con `Dockerfile` para cada servicio y un `docker-compose.yml` para orquestarlos.
-
-*(Ajusta la sección de Puntos Opcionales según el estado final de tu implementación).*
