@@ -1,10 +1,10 @@
 # Full Stack Code Challenge - Toolbox
 
-Este proyecto implementa una API backend y un cliente frontend como parte de un desafío técnico. El frontend consume datos de la API, que a su vez obtiene y formatea datos de una API externa.
+Este proyecto implementa una API backend y un cliente frontend. El frontend consume datos de la API, que a su vez obtiene y formatea datos de una API externa.
 
 ## Diagrama de Secuencia
 
-El flujo de peticiones sigue el diagrama proporcionado en el desafío: [Diagrama de Secuencia](https://cs1.ssltrust.me/s/6u9aC5hCTEhTpT1) (enlace original del desafío).
+El flujo de peticiones sigue el diagrama proporcionado en el desafío: [Diagrama de Secuencia](https://cs1.ssltrust.me/s/6u9aC5hCTEhTpT1).
 
 ## Tecnologías Utilizadas
 
@@ -58,7 +58,6 @@ fullstack-challenge/
 * Node.js:
     * Para el API: v14.x (gestionado por Docker)
     * Para el Frontend (build local si se hace): v16.x (gestionado por Docker para el build)
-    * (Se recomienda NVM - Node Version Manager para gestionar múltiples versiones si se trabaja localmente fuera de Docker)
 * npm (usualmente viene con Node.js)
 * Docker Desktop (o Docker Engine y Docker Compose CLI) instalado y en ejecución.
 
@@ -157,7 +156,6 @@ La forma recomendada de ejecutar ambas aplicaciones es usando Docker Compose.
 * **CORS**: El API está configurado para permitir peticiones desde cualquier origen (`*`) para facilitar el desarrollo. En un entorno de producción, esto debería restringirse al dominio específico del frontend.
 * **Interfaz de Usuario Frontend**: Se sigue el wireframe proporcionado usando React Bootstrap. Incluye una barra de navegación con un campo de búsqueda (client-side) y un botón de refresco. La tabla muestra los datos de los archivos formateados.
 * **Node.js Versions**: Los Dockerfiles están configurados para usar Node 14 para la API y Node 16 para la etapa de build del frontend, según los requisitos.
-* **`NODE_OPTIONS` para Build del Frontend**: Se utiliza `NODE_OPTIONS='--openssl-legacy-provider --max-old-space-size=4096'` en el script `build` del `frontend/package.json` para asegurar la compatibilidad con OpenSSL y proveer suficiente memoria durante el build de `react-scripts` dentro de Docker.
 
 ## Puntos Opcionales Implementados
 
