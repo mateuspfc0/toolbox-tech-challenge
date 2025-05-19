@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+}
+
+.table-responsive {
+  max-height: 60vh;
+}
+
+.alert-custom-width {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
