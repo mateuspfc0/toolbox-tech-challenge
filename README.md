@@ -51,7 +51,7 @@ fullstack-challenge/
 ├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)
 ├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios
 └── README.md          # Este archivo
-```text
+```
 
 ## Requisitos Previos
 
