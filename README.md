@@ -30,27 +30,27 @@ El flujo de peticiones sigue el diagrama proporcionado en el desafío: [Diagrama
 
 ```text
 fullstack-challenge/
-├── api/              # Código del Backend API
-│   ├── src/          # Código fuente de la API
+├── api/              
+│   ├── src/          
 │   │   ├── controllers/
 │   │   ├── routes/
 │   │   └── services/
-│   ├── test/         # Tests para la API
+│   ├── test/         
 │   ├── .gitignore
-│   ├── Dockerfile    # Dockerfile para la API
+│   ├── Dockerfile    
 │   └── package.json
-├── frontend/         # Código del Frontend React
+├── frontend/         
 │   ├── public/
-│   ├── src/          # Código fuente del Frontend
+│   ├── src/          
 │   │   ├── components/
 │   │   └── services/
-│   ├── .dockerignore # Archivo para ignorar archivos en el contexto Docker del frontend
+│   ├── .dockerignore 
 │   ├── .gitignore
-│   ├── Dockerfile    # Dockerfile para el Frontend
+│   ├── Dockerfile    
 │   └── package.json
-├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)
-├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios
-└── README.md          # Este archivo
+├── .gitignore        
+├── docker-compose.yml 
+└── README.md          
 ```
 
 ## Requisitos Previos
