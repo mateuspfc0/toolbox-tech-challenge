@@ -144,7 +144,7 @@ La forma recomendada de ejecutar ambas aplicaciones es usando Docker Compose.
     * Permite filtrar por nombre de archivo: `GET /files/data?fileName=<nombre_del_archivo.csv>`
         * Ejemplo: `curl -X GET "http://localhost:3001/files/data?fileName=file1.csv"`
 
-* **`GET /files/list` (Punto Opcional)**: Retorna la lista de nombres de archivos disponibles desde la API externa.
+* **`GET /files/list`**: Retorna la lista de nombres de archivos disponibles desde la API externa.
     * Ejemplo: `curl -X GET http://localhost:3001/files/list -H "accept: application/json"`
 
 ## Consideraciones y Decisiones de Diseño
