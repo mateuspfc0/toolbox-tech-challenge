@@ -9,10 +9,10 @@ const { parse } = require('csv-parse');
  * @returns {Promise<Array<Object>>} A promise that resolves to an array of formatted line objects.
  */
 async function processCsvContent(csvContent, fileName) {
-  console.log(`[${fileName}] Starting processCsvContent.`); // Log inicial
+  console.debug(`[${fileName}] Starting processCsvContent.`); // Log inicial
   return new Promise((resolve, reject) => {
     if (!csvContent || typeof csvContent !== 'string' || csvContent.trim() === '') {
-      console.log(`[${fileName}] File is empty or content is invalid. Resolving with empty lines.`);
+      console.debug(`[${fileName}] File is empty or content is invalid. Resolving with empty lines.`);
       resolve([]);
       return;
     }
@@ -31,7 +31,7 @@ async function processCsvContent(csvContent, fileName) {
     parser.on('readable', () => {
       let record;
       while ((record = parser.read()) !== null) {
-        console.log(`\n[${fileName}] Readable: Record for data line ${lineNumber}:`, JSON.stringify(record));
+        console.debug(`\n[${fileName}] Readable: Record for data line ${lineNumber}:`, JSON.stringify(record));
 
         const fileFromCsv = record.file_csv;
         const textValue = record.text;
@@ -40,45 +40,45 @@ async function processCsvContent(csvContent, fileName) {
         let isValidRecord = true;
 
         if (!fileFromCsv || typeof fileFromCsv !== 'string' || fileFromCsv.trim() === '') {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'file_csv' field: '${fileFromCsv}' (type: ${typeof fileFromCsv})`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'file_csv' field: '${fileFromCsv}' (type: ${typeof fileFromCsv})`);
           isValidRecord = false;
         }
         if (!textValue || typeof textValue !== 'string' || textValue.trim() === '') {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'text' field: '${textValue}' (type: ${typeof textValue})`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'text' field: '${textValue}' (type: ${typeof textValue})`);
           isValidRecord = false;
         }
         if (!numberString || typeof numberString !== 'string' || numberString.trim() === '') {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'number' string: '${numberString}' (type: ${typeof numberString})`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'number' string: '${numberString}' (type: ${typeof numberString})`);
           isValidRecord = false;
         }
         if (!hexValue || typeof hexValue !== 'string' || hexValue.trim() === '') {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'hex' field: '${hexValue}' (type: ${typeof hexValue})`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - Invalid or empty 'hex' field: '${hexValue}' (type: ${typeof hexValue})`);
           isValidRecord = false;
         }
 
         if (!isValidRecord) {
-          console.log(`[${fileName}] Data line ${lineNumber}: Record failed initial field validation. Skipping.`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: Record failed initial field validation. Skipping.`);
           lineNumber++;
           continue;
         }
-        console.log(`[${fileName}] Data line ${lineNumber}: PASS - Initial field validation.`);
+        console.debug(`[${fileName}] Data line ${lineNumber}: PASS - Initial field validation.`);
 
         const numberValueParsed = parseInt(numberString, 10);
         if (isNaN(numberValueParsed)) {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - 'number' field '${numberString}' is not a valid number. Skipping.`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - 'number' field '${numberString}' is not a valid number. Skipping.`);
           lineNumber++;
           continue;
         }
-        console.log(`[${fileName}] Data line ${lineNumber}: PASS - 'number' field '${numberString}' parsed to ${numberValueParsed}.`);
+        console.debug(`[${fileName}] Data line ${lineNumber}: PASS - 'number' field '${numberString}' parsed to ${numberValueParsed}.`);
 
         if (!/^[a-fA-F0-9]{32}$/.test(hexValue)) {
-          console.log(`[${fileName}] Data line ${lineNumber}: FAIL - 'hex' field '${hexValue}' is not a 32-char hex. Skipping.`);
+          console.debug(`[${fileName}] Data line ${lineNumber}: FAIL - 'hex' field '${hexValue}' is not a 32-char hex. Skipping.`);
           lineNumber++;
           continue;
         }
-        console.log(`[${fileName}] Data line ${lineNumber}: PASS - 'hex' field '${hexValue}' is valid.`);
+        console.debug(`[${fileName}] Data line ${lineNumber}: PASS - 'hex' field '${hexValue}' is valid.`);
         
-        console.log(`[${fileName}] Data line ${lineNumber}: Record is valid. Adding to lines array.`);
+        console.debug(`[${fileName}] Data line ${lineNumber}: Record is valid. Adding to lines array.`);
         lines.push({
           text: textValue.trim(),
           number: numberValueParsed,
@@ -94,7 +94,7 @@ async function processCsvContent(csvContent, fileName) {
     });
 
     parser.on('end', () => {
-      console.log(`[${fileName}] CSV stream ended. Found ${lines.length} valid lines. Resolving promise.`);
+      console.debug(`[${fileName}] CSV stream ended. Found ${lines.length} valid lines. Resolving promise.`);
       resolve(lines);
     });
   });
