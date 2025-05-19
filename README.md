@@ -28,7 +28,31 @@ El flujo de peticiones sigue el diagrama proporcionado en el desafío: [Diagrama
 
 ## Estructura del Proyecto
 
-toolbox-tech-challenge/├── api/              # Código del Backend API│   ├── src/          # Código fuente de la API│   │   ├── controllers/│   │   ├── routes/│   │   └── services/│   ├── test/         # Tests para la API│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para la API│   └── package.json├── frontend/         # Código del Frontend React│   ├── public/│   ├── src/          # Código fuente del Frontend│   │   ├── components/│   │   └── services/│   ├── .dockerignore # Archivo para ignorar archivos en el contexto Docker del frontend│   ├── .gitignore│   ├── Dockerfile    # Dockerfile para el Frontend│   └── package.json├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios└── README.md          # Este archivo
+```text
+fullstack-challenge/
+├── api/              # Código del Backend API
+│   ├── src/          # Código fuente de la API
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   └── services/
+│   ├── test/         # Tests para la API
+│   ├── .gitignore
+│   ├── Dockerfile    # Dockerfile para la API
+│   └── package.json
+├── frontend/         # Código del Frontend React
+│   ├── public/
+│   ├── src/          # Código fuente del Frontend
+│   │   ├── components/
+│   │   └── services/
+│   ├── .dockerignore # Archivo para ignorar archivos en el contexto Docker del frontend
+│   ├── .gitignore
+│   ├── Dockerfile    # Dockerfile para el Frontend
+│   └── package.json
+├── .gitignore        # .gitignore global (opcional, pero bueno para archivos a nivel raíz)
+├── docker-compose.yml # Archivo de Docker Compose para orquestar los servicios
+└── README.md          # Este archivo
+```text
+
 ## Requisitos Previos
 
 * Node.js:
